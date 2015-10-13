@@ -107,3 +107,18 @@ filetype off
     " always show the status line
     set laststatus=2
 " }
+
+" keymappings {
+    " hardmode
+    nnoremap <Left> <nop>
+    nnoremap <Right> <nop>
+    nnoremap <Up> <nop>
+    nnoremap <Down> <nop>
+
+    " move to beginning/end of line
+    nnoremap B ^
+    nnoremap E $
+
+    " highlight last inserted text
+    nnoremap gV `[v`]
+" }
