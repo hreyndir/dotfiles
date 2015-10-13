@@ -1,0 +1,19 @@
+# navigation {
+    alias ..="cd .."
+    alias ...="cd ../.."
+    alias ....="cd ../../.."
+    alias .....="cd ../../../.."
+    alias ~="cd ~"
+    alias -- -="cd -"
+# }
+
+# shortcuts {
+    alias dl="cd ~/Downloads"
+    alias dt="cd ~/Desktop"
+    alias gh="cd ~"
+    alias ll="ls -alhF"
+    # print own ip
+    alias printip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
+    # pretty print path
+    alias path='echo $PATH | tr -s ":" "\n"'
+# }
