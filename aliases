@@ -12,8 +12,17 @@
     alias dt="cd ~/Desktop"
     alias gh="cd ~"
     alias ll="ls -alhF"
+    alias mvim="/usr/local/Cellar/macvim/7.4-77/bin/mvim"
+    alias tvim="mvim --remote-tab-silent"
+
+    # quick edit .zshrc/.vimrc
+    alias vimrc="mvim ~/dotfiles/vimrc.vim"
+    alias zshrc="mvim ~/dotfiles/zshrc.zsh"
+
     # print own ip
     alias printip='ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2'
+
     # pretty print path
     alias path='echo $PATH | tr -s ":" "\n"'
 # }
+

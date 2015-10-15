@@ -1,4 +1,4 @@
-" must be first line
+" disable vi compatibility
 set nocompatible
 filetype off
 
@@ -16,8 +16,12 @@ filetype off
 
     Plugin 'scrooloose/nerdtree'
     Plugin 'bling/vim-airline'
-    Plugin 'altercation/vim-colors-solarized'
     Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'sjl/gundo.vim'
+    Plugin 'godlygeek/tabular'
+    Plugin 'valloric/MatchTagAlways'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'altercation/vim-colors-solarized'
     Plugin 'nvie/vim-flake8'
     Plugin 'kballard/vim-swift'
 
@@ -53,6 +57,8 @@ filetype off
     set showcmd
     " highlight current line
     set cursorline
+    " disable folding
+    set nofoldenable
     " font
     set guifont=Hack:h15
     " highlight problematic whitespace
@@ -66,6 +72,8 @@ filetype off
     set lazyredraw
     " highlight matching parenthesis when moving cursor
     set showmatch
+    " always show the mode we're editing in
+    set showmode
 
     " disable audio bell
     if has('gui_running')
@@ -98,6 +106,8 @@ filetype off
 " }
 
 " movement {
+    " set 7 lines to the cursor when moving with j/k
+    set so=7
     " treat long lines as break lines
     nnoremap j gj
     nnoremap k gk
@@ -109,6 +119,8 @@ filetype off
 " }
 
 " keymappings {
+    " set the leader-key
+    let mapleader = "\<Space>"
     " hardmode
     nnoremap <Left> <nop>
     nnoremap <Right> <nop>
@@ -121,4 +133,17 @@ filetype off
 
     " highlight last inserted text
     nnoremap gV `[v`]
+
+    " quick save
+    nmap <leader>w :w!<cr>
+" }
+
+" plugin configuration {
+    " vim-markdown {
+        let g:vim_markdown_folding_disabled=1
+    " }
+
+    " Gundo {
+        nnoremap <D-ü> :GundoToggle<CR>
+    " }
 " }
