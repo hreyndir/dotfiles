@@ -15,6 +15,7 @@ filetype off
     " }
 
     Plugin 'scrooloose/nerdtree'
+    Plugin 'tpope/vim-fugitive'
     Plugin 'bling/vim-airline'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'sjl/gundo.vim'
@@ -36,6 +37,9 @@ filetype off
     set autoindent
     set nosmartindent
     filetype plugin indent on
+
+    " reload changes from outside
+    set autoread
 
     " maximize on startup
     set lines=999
@@ -121,6 +125,16 @@ filetype off
 " keymappings {
     " set the leader-key
     let mapleader = "\<Space>"
+
+    " quickly edit dotfiles
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+    nnoremap <leader>sv :source $MYVIMRC<cr>
+    nnoremap <leader>ez :vsplit ~/.zshrc<cr>
+
+    " quick save
+    nmap <leader>w :w!<cr>
+
+
     " hardmode
     nnoremap <Left> <nop>
     nnoremap <Right> <nop>
@@ -134,11 +148,36 @@ filetype off
     " highlight last inserted text
     nnoremap gV `[v`]
 
-    " quick save
-    nmap <leader>w :w!<cr>
-" }
+    " Switch to specific tab numbers with Command-number
+    noremap <D-1> :tabn 1<CR>
+    noremap <D-2> :tabn 2<CR>
+    noremap <D-3> :tabn 3<CR>
+    noremap <D-4> :tabn 4<CR>
+    noremap <D-5> :tabn 5<CR>
+    noremap <D-6> :tabn 6<CR>
+    noremap <D-7> :tabn 7<CR>
+    noremap <D-8> :tabn 8<CR>
+    noremap <D-9> :tabn 9<CR>
+    " Command-0 goes to the last tab
+    noremap <D-0> :tablast<CR>
+    " }
 
-" plugin configuration {
+" plugins {
+    " vim-airline {
+        if !exists('g:airline_symbols')
+            let g:airline_symbols = {}
+        endif
+
+        set noshowmode
+        let g:airline_powerline_fonts = 1
+        let g:airline_detect_modified = 1
+
+        if has('gui_running')
+            let g:airline_theme = 'molokai'
+        else
+            let g:airline_theme = 'molokai'
+        endif
+    " }
     " vim-markdown {
         let g:vim_markdown_folding_disabled=1
     " }

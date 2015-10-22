@@ -30,6 +30,9 @@
     unset MAILCHECK
     unsetopt correct_all
 
+    # autocompletion
+    autoload -Uz compinit && compinit
+
     # startup {
         # unicorns n' stuff
         ponysay -q
