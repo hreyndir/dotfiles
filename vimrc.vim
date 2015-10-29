@@ -2,7 +2,7 @@
 set nocompatible
 filetype off
 
-" plugins {
+" plugins {{{
     " vundle {
         " set the runtime path to include Vundle and initialize
         set rtp+=~/.vim/bundle/Vundle.vim
@@ -19,6 +19,7 @@ filetype off
     Plugin 'bling/vim-airline'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'sjl/gundo.vim'
+    Plugin 'mhinz/vim-startify'
     Plugin 'godlygeek/tabular'
     Plugin 'valloric/MatchTagAlways'
     Plugin 'plasticboy/vim-markdown'
@@ -28,9 +29,9 @@ filetype off
 
     call vundle#end()
     filetype plugin indent on
-" }
+" }}}
 
-" general {
+" general {{{
     " lines of history to be remebered
     set history=700
     " enable filetype plugins
@@ -44,19 +45,21 @@ filetype off
     " maximize on startup
     set lines=999
     set columns=9999
-" }
+" }}}
 
-" colors {
-    colorscheme solarized
+" colors {{{
+    colorscheme molokai
     set background=dark
-" }
+" }}}
 
-" ui {
+" ui {{{
     " syntax highlighting
     syntax on
     syntax enable
     " show line numbers
     set number
+    " wrap lines
+    set wrap
     " show last command entered
     set showcmd
     " highlight current line
@@ -87,9 +90,9 @@ filetype off
     set novisualbell
     set t_vb=
     autocmd GUIENTER,BufNewFile,BufFilePre,BufRead,BufReadPost set vb t_vb=
-" }
+" }}}
 
-" formatting {
+" formatting {{{
     scriptencoding utf-8
     " number of visual spaces per tab
     set tabstop=4
@@ -97,9 +100,15 @@ filetype off
     set softtabstop=4
     " tabs are spaces
     set expandtab
-" }
 
-" search {
+    " commands {
+        " When inserting a new line do not take special characters from the
+        " line above
+        autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    " }
+" }}}
+
+" search {{{
     " search characters as entered
     set incsearch
     " highlight matches
@@ -107,22 +116,22 @@ filetype off
     " ignore case
     set ignorecase
     set smartcase
-" }
+" }}}
 
-" movement {
+" movement {{{
     " set 7 lines to the cursor when moving with j/k
     set so=7
     " treat long lines as break lines
     nnoremap j gj
     nnoremap k gk
-" }
+" }}}
 
-" status line {
+" status line {{{
     " always show the status line
     set laststatus=2
-" }
+" }}}
 
-" keymappings {
+" keymappings {{{
     " set the leader-key
     let mapleader = "\<Space>"
 
@@ -134,7 +143,6 @@ filetype off
     " quick save
     nmap <leader>w :w!<cr>
 
-
     " hardmode
     nnoremap <Left> <nop>
     nnoremap <Right> <nop>
@@ -144,6 +152,13 @@ filetype off
     " move to beginning/end of line
     nnoremap B ^
     nnoremap E $
+
+    " Visual shifting
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Duplicate current line
+    nnoremap <D-j> yyp
 
     " highlight last inserted text
     nnoremap gV `[v`]
@@ -160,9 +175,9 @@ filetype off
     noremap <D-9> :tabn 9<CR>
     " Command-0 goes to the last tab
     noremap <D-0> :tablast<CR>
-    " }
+" }}}
 
-" plugins {
+" plugins {{{
     " vim-airline {
         if !exists('g:airline_symbols')
             let g:airline_symbols = {}
@@ -178,11 +193,75 @@ filetype off
             let g:airline_theme = 'molokai'
         endif
     " }
+
     " vim-markdown {
         let g:vim_markdown_folding_disabled=1
+    " }
+
+    " vim-easymotion {
+        " map forward and backword easymotion to f
+        nnoremap f H:call EasyMotion#WB(0, 0)<CR>
+        let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+        " Bi-directional find motion
+        nmap s <Plug>(easymotion-s2)
+
+        " Turn on case sensitive feature
+        let g:EasyMotion_smartcase = 1
     " }
 
     " Gundo {
         nnoremap <D-ü> :GundoToggle<CR>
     " }
-" }
+
+    " vim-startify {
+        let g:startify_bookmarks = [
+                \ '~/.vimrc',
+                \ '~/.zshrc'
+                \ ]
+        let g:startify_change_to_dir = 1
+        let g:startify_change_to_vcs_root = 0
+        let g:startify_custom_footer = ''
+        let g:startify_custom_header = [
+                \ '',
+                \ '    ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄  ',
+                \ '   ███    ███ ███  ▄██▀▀▀███▀▀▀██▄',
+                \ '   ███    ███ ███▌ ███   ███   ███',
+                \ '   ███    ███ ███▌ ███   ███   ███',
+                \ '   ███    ███ ███▌ ███   ███   ███',
+                \ '   ███    ███ ███  ███   ███   ███',
+                \ '   ███    ███ ███  ███   ███   ███',
+                \ '    ▀██████▀  █▀    ▀█   ███   █▀ ',
+                \ '',
+                \ '',
+                \ '',
+                \ ]
+        let g:startify_custom_indices = []
+        let g:startify_disable_at_vimenter = 0
+        let g:startify_enable_special = 1
+        let g:startify_files_number = 10
+        let g:startify_list_order = [
+                \ ['   Sessions:'],
+                \ 'sessions',
+                \ ['   Bookmarks:'],
+                \ 'bookmarks',
+                \ ['   Most recently used files'],
+                \ 'files',
+                \ ['   Most recently used files in the current directory:'],
+                \ 'dir',
+                \ ]
+        let g:startify_relative_path = 0
+        let g:startify_session_autoload = 0
+        let g:startify_session_delete_buffers = 0
+        let g:startify_session_dir = '~/.vim/session'
+        let g:startify_session_persistence = 1
+        let g:startify_session_savecmds = []
+        let g:startify_session_savevars = [
+               \ 'g:startify_session_savevars',
+               \ 'g:startify_session_savecmds',
+               \ 'g:random_plugin_use_feature'
+               \ ]
+        let g:startify_skiplist_server = []
+        let g:startify_skiplist = []
+    " }
+" }}}

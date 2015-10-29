@@ -38,3 +38,18 @@
         ponysay -q
     # }
 # }
+
+# functions {
+    # find file under the current directory
+    ff () { /usr/bin/find . -name "$@" ; }
+
+     # find a file whose name starts with a given string
+    ffs () { /usr/bin/find . -name "$@"'*' ; }
+
+    # find a file whose name ends with a given string
+    ffe () { /usr/bin/find . -name '*'"$@" ; }
+# }
+
+# plugins {
+    source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# }
