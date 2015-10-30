@@ -16,6 +16,7 @@ filetype off
 
     Plugin 'scrooloose/nerdtree'
     Plugin 'tpope/vim-fugitive'
+    Plugin 'airblade/vim-gitgutter'
     Plugin 'bling/vim-airline'
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'sjl/gundo.vim'
@@ -25,6 +26,7 @@ filetype off
     Plugin 'plasticboy/vim-markdown'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'nvie/vim-flake8'
+    Plugin 'Shougo/unite.vim'
     Plugin 'kballard/vim-swift'
 
     call vundle#end()
@@ -41,6 +43,9 @@ filetype off
 
     " reload changes from outside
     set autoread
+
+    " working directory is always where the current file is located
+    set autochdir
 
     " maximize on startup
     set lines=999
