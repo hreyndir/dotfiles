@@ -21,9 +21,11 @@ filetype off
     Plugin 'Lokaltog/vim-easymotion'
     Plugin 'sjl/gundo.vim'
     Plugin 'mhinz/vim-startify'
-    Plugin 'godlygeek/tabular'
     Plugin 'valloric/MatchTagAlways'
+    Plugin 'scrooloose/syntastic'
+    Plugin 'nathanaelkane/vim-indent-guides'
     Plugin 'plasticboy/vim-markdown'
+    Plugin 'flazz/vim-colorschemes'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'nvie/vim-flake8'
     Plugin 'Shougo/unite.vim'
@@ -89,7 +91,7 @@ filetype off
 
     " disable audio bell
     if has('gui_running')
-        autocmd GUIEnter * set vb t_vb=
+        autocmd! GUIEnter * set vb t_vb=
     endif
     set noerrorbells
     set novisualbell
@@ -126,9 +128,6 @@ filetype off
 " movement {{{
     " set 7 lines to the cursor when moving with j/k
     set so=7
-    " treat long lines as break lines
-    nnoremap j gj
-    nnoremap k gk
 " }}}
 
 " status line {{{
@@ -140,6 +139,9 @@ filetype off
     " set the leader-key
     let mapleader = "\<Space>"
 
+    " leave insert with jk
+    inoremap jk <ESC>
+
     " quickly edit dotfiles
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -147,6 +149,10 @@ filetype off
 
     " quick save
     nmap <leader>w :w!<cr>
+
+    " treat long lines as break lines
+    nnoremap j gj
+    nnoremap k gk
 
     " hardmode
     nnoremap <Left> <nop>
@@ -157,6 +163,12 @@ filetype off
     " move to beginning/end of line
     nnoremap B ^
     nnoremap E $
+
+    " delete word under cursor
+    map ä viwdi
+
+    " clear highlights
+    map ö :nohl<Enter>
 
     " Visual shifting
     vnoremap < <gv
@@ -178,6 +190,7 @@ filetype off
     noremap <D-7> :tabn 7<CR>
     noremap <D-8> :tabn 8<CR>
     noremap <D-9> :tabn 9<CR>
+
     " Command-0 goes to the last tab
     noremap <D-0> :tablast<CR>
 " }}}
