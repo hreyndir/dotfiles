@@ -109,7 +109,7 @@ filetype off
     set expandtab
 
     " commands {
-        " When inserting a new line do not take special characters from the
+        " when inserting a new line do not take special characters from the
         " line above
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     " }
@@ -148,7 +148,10 @@ filetype off
     nnoremap <leader>ez :vsplit ~/.zshrc<cr>
 
     " quick save
-    nmap <leader>w :w!<cr>
+    nmap <leader>w :w!<CR>
+
+    " leave insert mode faster
+    inoremap jk <ESC>
 
     " treat long lines as break lines
     nnoremap j gj
@@ -165,22 +168,22 @@ filetype off
     nnoremap E $
 
     " delete word under cursor
-    map ä viwdi
+    map ä ciw
 
     " clear highlights
     map ö :nohl<Enter>
 
-    " Visual shifting
+    " visual shifting
     vnoremap < <gv
     vnoremap > >gv
 
-    " Duplicate current line
+    " duplicate current line
     nnoremap <D-j> yyp
 
     " highlight last inserted text
     nnoremap gV `[v`]
 
-    " Switch to specific tab numbers with Command-number
+    " switch to specific tab numbers with Command-number
     noremap <D-1> :tabn 1<CR>
     noremap <D-2> :tabn 2<CR>
     noremap <D-3> :tabn 3<CR>
@@ -191,7 +194,7 @@ filetype off
     noremap <D-8> :tabn 8<CR>
     noremap <D-9> :tabn 9<CR>
 
-    " Command-0 goes to the last tab
+    " command-0 goes to the last tab
     noremap <D-0> :tablast<CR>
 " }}}
 
